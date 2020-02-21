@@ -27,11 +27,10 @@ object Form1: TForm1
     Brush.Color = clSilver
   end
   object P1: TImage
-    Left = 1016
-    Top = 120
+    Left = 1024
+    Top = 128
     Width = 20
     Height = 200
-    AutoSize = True
     Picture.Data = {
       07544269746D6170162F0000424D162F00000000000036000000280000001400
       0000C80000000100180000000000E02E0000C40E0000C40E0000000000000000
@@ -418,7 +417,6 @@ object Form1: TForm1
     Top = 120
     Width = 20
     Height = 200
-    AutoSize = True
     Picture.Data = {
       07544269746D6170162F0000424D162F00000000000036000000280000001400
       0000C80000000100180000000000E02E0000C40E0000C40E0000000000000000
@@ -934,8 +932,9 @@ object Form1: TForm1
     OnTimer = Paddle2_DownTimer
     Top = 72
   end
-  object Ball: TTimer
+  object BallTimer: TTimer
     Interval = 15
+    OnTimer = BallTimerTimer
     Left = 520
     Top = 8
   end
