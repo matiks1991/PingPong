@@ -1,10 +1,11 @@
 object Form1: TForm1
   Left = 182
   Top = 160
-  Width = 1095
-  Height = 508
+  AutoScroll = False
   AutoSize = True
   Caption = 'PingPong v1.0'
+  ClientHeight = 469
+  ClientWidth = 1079
   Color = clBtnFace
   UseDockManager = True
   DockSite = True

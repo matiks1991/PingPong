@@ -9,7 +9,7 @@
 #pragma resource "*.dfm"
 TForm1 *Form1;
 
-int xBall=8, yBall=8;
+double xBall=8, yBall=8;
 
 bool isBallInMiddle(TImage * ball, TImage * paddle)
 {
@@ -26,7 +26,7 @@ void speedUpBall(TImage * ball, TImage * paddle)
     if(isBallInMiddle(ball, paddle))
     {
        xBall *= 1.30;
-       yBall *= 1.14;
+       yBall *= 1.13;
     }
 }
 
@@ -82,9 +82,9 @@ void __fastcall TForm1::BallTimerTimer(TObject *Sender)
     B->Left += xBall;
     B->Top += yBall;
 
-    if(B->Top-5 <= Background->Top) yBall=-yBall; //upper limit
+    if(B->Top-10 <= Background->Top) yBall=-yBall; //upper limit
 
-    if(B->Top+B->Height >= Background->Height) yBall=-yBall; //lower limit
+    if(B->Top+B->Height+10 >= Background->Height) yBall=-yBall; //lower limit
 
     if (B->Left+B->Width >= P1->Left+P1->Width+20) //loss P1
     {
