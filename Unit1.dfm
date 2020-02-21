@@ -933,7 +933,7 @@ object Form1: TForm1
     Top = 72
   end
   object BallTimer: TTimer
-    Interval = 15
+    Interval = 20
     OnTimer = BallTimerTimer
     Left = 520
     Top = 8
