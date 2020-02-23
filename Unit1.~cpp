@@ -272,10 +272,15 @@ void __fastcall TForm1::Button2Click(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TForm1::FormCreate(TObject *Sender)
 {
-    Button1->Visible = true;
-    Button2->Visible = false;
-    Label1->Visible = true;
-    Label2->Visible = false;
-    Label3->Visible = false;
+    ShowMessage("Witaj w grze PingPong.\n\nLewy gracz steruje wciskaj¹c klawisze A oraz Z.\nPrawy gracz steruje wciskaj¹c strza³ki do góry i w dó³.\n\nDla urozmaicenia zabawy:\nKiedy odbijesz pi³kê na œrodku paletki, wówczas zmienisz jej k¹t odbicia i pi³ka przyœpieszy.\nIm d³u¿ej odbijasz, tym pi³ka szybciej przemieszcza siê.\nMo¿esz dowolnie zmieniaæ pole gry.\n\nMi³ej zabawy!");
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction &Action)
+{
+    if(Application->MessageBox("Czy na pewno zakoñczyæ program?", "PotwierdŸ",
+    MB_YESNO | MB_ICONQUESTION) == IDNO)
+    {
+        Action=caNone;
+    }
 }
 //---------------------------------------------------------------------------

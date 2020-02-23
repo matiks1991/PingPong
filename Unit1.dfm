@@ -1,8 +1,7 @@
 object Form1: TForm1
-  Left = 175
-  Top = 102
+  Left = 225
+  Top = 69
   AutoScroll = False
-  AutoSize = True
   Caption = 'PingPong v1.0'
   ClientHeight = 469
   ClientWidth = 1079
@@ -15,6 +14,7 @@ object Form1: TForm1
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnClose = FormClose
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnKeyUp = FormKeyUp
