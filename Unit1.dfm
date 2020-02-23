@@ -971,6 +971,7 @@ object Form1: TForm1
     Top = 384
     Width = 400
     Height = 65
+    Cursor = crHandPoint
     Caption = 'Nowa gra'
     Font.Charset = TURKISH_CHARSET
     Font.Color = clWindowText
@@ -986,11 +987,12 @@ object Form1: TForm1
     Top = 312
     Width = 400
     Height = 65
+    Cursor = crHandPoint
     Caption = 'Nast'#281'pna runda >'
     Font.Charset = TURKISH_CHARSET
     Font.Color = clLime
     Font.Height = -23
-    Font.Name = 'Niagara Engraved'
+    Font.Name = 'MS Sans Serif'
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 1
