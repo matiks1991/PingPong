@@ -1,6 +1,7 @@
 //---------------------------------------------------------------------------
 
 #include <vcl.h>
+#include<cstdlib>
 #pragma hdrstop
 
 #include "Unit1.h"
@@ -9,7 +10,9 @@
 #pragma resource "*.dfm"
 TForm1 *Form1;
 
-double xBall=8, yBall=8;
+int xBall=8, yBall=8;
+
+int numberOfBounces=0, playerPoints1=0, playerPoints2=0;
 
 bool isBallInMiddle(TImage * ball, TImage * paddle)
 {
@@ -25,9 +28,50 @@ void speedUpBall(TImage * ball, TImage * paddle)
 {
     if(isBallInMiddle(ball, paddle))
     {
-       xBall *= 1.30;
-       yBall *= 1.13;
+        if(abs(xBall)<20)
+        {
+            xBall *= 1.25;
+            yBall *= 1.2;
+        }
+        else
+        {
+            xBall=xBall/abs(xBall)*(abs(xBall)+1);
+        }
     }
+}
+
+void startGame(TImage * Ball, TTimer * BallTimer, TTimer * Paddle1_Up,
+TTimer * Paddle1_Down, TTimer * Paddle2_Up, TTimer * Paddle2_Down,
+TButton * Button1, TButton * Button2, TLabel * Label1, TLabel * Label2,
+TLabel * Label3)
+{    /*
+    B->Left = 500;
+    B->Top = 200;
+    xBall=8; yBall=8;
+    B->Visible = true;
+    BallTimer->Enabled = true;
+    Paddle1_Up->Enabled = true;
+    Paddle1_Down->Enabled = true;
+    Paddle2_Up->Enabled = true;
+    Paddle2_Down->Enabled = true;
+    numberOfBounces = 0;
+    Button1->Visible = false;
+    Button2->Visible = false;
+    Label1->Visible = false;
+    Label2->Visible = false;
+    Label3->Visible = false;    */
+}
+
+void stopGame(TImage * Ball, TTimer * BallTimer, TButton * Button1,
+TButton * Button2, TLabel * Label1, TLabel * Label2, TLabel * Label3)
+{   /*
+    Ball->Visible = false;
+    BallTimer->Enabled = false;
+    Label1->Visible = true;
+    Label2->Visible = true;
+    Label3->Visible = true;
+    Button2->Visible = true;
+    Button1->Visible = true;  */
 }
 
 //---------------------------------------------------------------------------
@@ -88,13 +132,31 @@ void __fastcall TForm1::BallTimerTimer(TObject *Sender)
 
     if (B->Left+B->Width >= P1->Left+P1->Width+20) //loss P1
     {
-        BallTimer->Enabled = false;
+        playerPoints2++;
+        Label1->Caption = "< Punkt dla gracza lewego";
+        //stopGame(B, BallTimer, Button1, Button2, Label1, Label2, Label3);
         B->Visible = false;
+        BallTimer->Enabled = false;
+        Label1->Visible = true;
+        Label2->Visible = true;
+        Label3->Visible = true;
+        Button2->Visible = true;
+        Button1->Visible = true;
+        xBall=8; yBall=8;
     }
     else if (B->Left <= P2->Left-20) //loss P2
     {
-        BallTimer->Enabled = false;
+        playerPoints1++;
+        Label1->Caption = "Punkt dla gracza prawego >";
+        //stopGame(B, BallTimer, Button1, Button2, Label1, Label2, Label3);
         B->Visible = false;
+        BallTimer->Enabled = false;
+        Label1->Visible = true;
+        Label2->Visible = true;
+        Label3->Visible = true;
+        Button2->Visible = true;
+        Button1->Visible = true;
+        xBall=-8; yBall=-8;
     }
     else if ((B->Top > (P1->Top-B->Height/2)) && (B->Top < P1->Top+P1->Height) &&  //bounce P1
     (B->Left+B->Width > P1->Left))
@@ -103,6 +165,7 @@ void __fastcall TForm1::BallTimerTimer(TObject *Sender)
         {
             xBall=-xBall;
             speedUpBall(B, P1);
+            numberOfBounces++;
         }
     }
     else if ((B->Top > (P2->Top-B->Height/2)) && (B->Top < P2->Top+P2->Height) &&  //bounce P2
@@ -112,7 +175,87 @@ void __fastcall TForm1::BallTimerTimer(TObject *Sender)
         {
             xBall=-xBall;
             speedUpBall(B, P2);
+            numberOfBounces++;
         }
     }
+
+    Label2->Caption = IntToStr(playerPoints2) + " : " + IntToStr(playerPoints1);
+    Label3->Caption = "Ilo\211\255\199\213 odbi\143: " + IntToStr(numberOfBounces);
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+    if(playerPoints1 || playerPoints2)
+    {
+        if(Application->MessageBox("Czy na pewno chcesz zacz¹æ grê od nowa?", "PotwierdŸ",
+        MB_YESNO | MB_ICONQUESTION) == IDYES)
+        {
+            Form1->Label1->Caption = "Runda za: 2";
+            Application->ProcessMessages(); Sleep(1000);
+            Form1->Label1->Caption = "Runda za: 1";
+            Application->ProcessMessages(); Sleep(1000);
+
+            playerPoints1 = 0;
+            playerPoints2 = 0;
+
+            B->Left = 500;
+            B->Top = 200;
+            B->Visible = true;
+            BallTimer->Enabled = true;
+
+            numberOfBounces = 0;
+
+            Button1->Visible = false;
+            Button2->Visible = false;
+            Label1->Visible = false;
+            Label2->Visible = false;
+            Label3->Visible = false;
+        }
+    }
+    else
+    {
+        Form1->Label1->Caption = "Runda za: 2";
+        Application->ProcessMessages(); Sleep(1000);
+        Form1->Label1->Caption = "Runda za: 1";
+        Application->ProcessMessages(); Sleep(1000);
+
+        BallTimer->Enabled = true;
+
+        Button1->Visible = false;
+        Label1->Visible = false;
+
+    }
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Button2Click(TObject *Sender)
+{
+    //startGame(B, BallTimer, Paddle1_Up, Paddle1_Down, Paddle2_Up, Paddle2_Down, Button1, Button2, Label1, Label2, Label3);
+
+    Form1->Label1->Caption = "Runda za: 2";
+    Application->ProcessMessages(); Sleep(1000);
+    Form1->Label1->Caption = "Runda za: 1";
+    Application->ProcessMessages(); Sleep(1000);
+
+    B->Left = 500;
+    B->Top = 200;
+    B->Visible = true;
+    BallTimer->Enabled = true;
+
+    numberOfBounces = 0;
+
+    Button1->Visible = false;
+    Button2->Visible = false;
+    Label1->Visible = false;
+    Label2->Visible = false;
+    Label3->Visible = false;
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::FormCreate(TObject *Sender)
+{
+    Button1->Visible = true;
+    Button2->Visible = false;
+    Label1->Visible = true;
+    Label2->Visible = false;
+    Label3->Visible = false;
 }
 //---------------------------------------------------------------------------
