@@ -5,6 +5,7 @@
 #pragma hdrstop
 
 #include "Unit1.h"
+#include "mmsystem.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -126,9 +127,17 @@ void __fastcall TForm1::BallTimerTimer(TObject *Sender)
     B->Left += xBall;
     B->Top += yBall;
 
-    if(B->Top-10 <= Background->Top) yBall=-yBall; //upper limit
+    if(B->Top-10 <= Background->Top) //upper limit
+    {
+        yBall=-yBall;
+        sndPlaySound("snd/pilka.wav", SND_ASYNC);
+    }
 
-    if(B->Top+B->Height+10 >= Background->Height) yBall=-yBall; //lower limit
+    if(B->Top+B->Height+10 >= Background->Height)    //lower limit
+    {
+        yBall=-yBall;
+        sndPlaySound("snd/pilka.wav", SND_ASYNC);
+    }
 
     if (B->Left+B->Width >= P1->Left+P1->Width+20) //loss P1
     {
@@ -143,6 +152,8 @@ void __fastcall TForm1::BallTimerTimer(TObject *Sender)
         Button2->Visible = true;
         Button1->Visible = true;
         xBall=8; yBall=8;
+
+        sndPlaySound("snd/koniec.wav", SND_ASYNC);
     }
     else if (B->Left <= P2->Left-20) //loss P2
     {
@@ -157,6 +168,8 @@ void __fastcall TForm1::BallTimerTimer(TObject *Sender)
         Button2->Visible = true;
         Button1->Visible = true;
         xBall=-8; yBall=-8;
+
+        sndPlaySound("snd/koniec.wav", SND_ASYNC);
     }
     else if ((B->Top > (P1->Top-B->Height/2)) && (B->Top < P1->Top+P1->Height) &&  //bounce P1
     (B->Left+B->Width > P1->Left))
@@ -166,6 +179,7 @@ void __fastcall TForm1::BallTimerTimer(TObject *Sender)
             xBall=-xBall;
             speedUpBall(B, P1);
             numberOfBounces++;
+            sndPlaySound("snd/pilka.wav", SND_ASYNC);
         }
     }
     else if ((B->Top > (P2->Top-B->Height/2)) && (B->Top < P2->Top+P2->Height) &&  //bounce P2
@@ -176,6 +190,7 @@ void __fastcall TForm1::BallTimerTimer(TObject *Sender)
             xBall=-xBall;
             speedUpBall(B, P2);
             numberOfBounces++;
+            sndPlaySound("snd/pilka.wav", SND_ASYNC);
         }
     }
 
@@ -210,6 +225,8 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
             Label1->Visible = false;
             Label2->Visible = false;
             Label3->Visible = false;
+
+            sndPlaySound("snd/start.wav", SND_ASYNC);
         }
     }
     else
@@ -224,6 +241,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
         Button1->Visible = false;
         Label1->Visible = false;
 
+        sndPlaySound("snd/start.wav", SND_ASYNC);
     }
 }
 //---------------------------------------------------------------------------
@@ -248,6 +266,8 @@ void __fastcall TForm1::Button2Click(TObject *Sender)
     Label1->Visible = false;
     Label2->Visible = false;
     Label3->Visible = false;
+
+    sndPlaySound("snd/start.wav", SND_ASYNC);
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::FormCreate(TObject *Sender)

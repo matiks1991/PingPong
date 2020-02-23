@@ -26,7 +26,6 @@ __published:	// IDE-managed Components
     TLabel *Label1;
     TLabel *Label2;
     TLabel *Label3;
-    TLabel *Label4;
     TTimer *BallTimer;
     void __fastcall Paddle1_UpTimer(TObject *Sender);
     void __fastcall Paddle1_DownTimer(TObject *Sender);

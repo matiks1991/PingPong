@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 168
-  Top = 65
+  Left = 175
+  Top = 102
   AutoScroll = False
   AutoSize = True
   Caption = 'PingPong v1.0'
@@ -965,24 +965,6 @@ object Form1: TForm1
     ParentFont = False
     Layout = tlCenter
     Visible = False
-  end
-  object Label4: TLabel
-    Left = 728
-    Top = 0
-    Width = 113
-    Height = 41
-    Alignment = taCenter
-    AutoSize = False
-    Caption = '0:0'
-    Color = clBtnFace
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clHotLight
-    Font.Height = -31
-    Font.Name = 'Palatino Linotype'
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    Layout = tlCenter
   end
   object Button1: TButton
     Left = 328
