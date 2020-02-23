@@ -993,7 +993,7 @@ object Form1: TForm1
     Font.Color = clLime
     Font.Height = -23
     Font.Name = 'MS Sans Serif'
-    Font.Style = [fsBold]
+    Font.Style = [fsBold, fsUnderline]
     ParentFont = False
     TabOrder = 1
     Visible = False

@@ -41,40 +41,6 @@ void speedUpBall(TImage * ball, TImage * paddle)
     }
 }
 
-void startGame(TImage * Ball, TTimer * BallTimer, TTimer * Paddle1_Up,
-TTimer * Paddle1_Down, TTimer * Paddle2_Up, TTimer * Paddle2_Down,
-TButton * Button1, TButton * Button2, TLabel * Label1, TLabel * Label2,
-TLabel * Label3)
-{    /*
-    B->Left = 500;
-    B->Top = 200;
-    xBall=8; yBall=8;
-    B->Visible = true;
-    BallTimer->Enabled = true;
-    Paddle1_Up->Enabled = true;
-    Paddle1_Down->Enabled = true;
-    Paddle2_Up->Enabled = true;
-    Paddle2_Down->Enabled = true;
-    numberOfBounces = 0;
-    Button1->Visible = false;
-    Button2->Visible = false;
-    Label1->Visible = false;
-    Label2->Visible = false;
-    Label3->Visible = false;    */
-}
-
-void stopGame(TImage * Ball, TTimer * BallTimer, TButton * Button1,
-TButton * Button2, TLabel * Label1, TLabel * Label2, TLabel * Label3)
-{   /*
-    Ball->Visible = false;
-    BallTimer->Enabled = false;
-    Label1->Visible = true;
-    Label2->Visible = true;
-    Label3->Visible = true;
-    Button2->Visible = true;
-    Button1->Visible = true;  */
-}
-
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
     : TForm(Owner)
@@ -143,7 +109,6 @@ void __fastcall TForm1::BallTimerTimer(TObject *Sender)
     {
         playerPoints2++;
         Label1->Caption = "< Punkt dla gracza lewego";
-        //stopGame(B, BallTimer, Button1, Button2, Label1, Label2, Label3);
         B->Visible = false;
         BallTimer->Enabled = false;
         Label1->Visible = true;
@@ -159,7 +124,6 @@ void __fastcall TForm1::BallTimerTimer(TObject *Sender)
     {
         playerPoints1++;
         Label1->Caption = "Punkt dla gracza prawego >";
-        //stopGame(B, BallTimer, Button1, Button2, Label1, Label2, Label3);
         B->Visible = false;
         BallTimer->Enabled = false;
         Label1->Visible = true;
@@ -247,8 +211,6 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button2Click(TObject *Sender)
 {
-    //startGame(B, BallTimer, Paddle1_Up, Paddle1_Down, Paddle2_Up, Paddle2_Down, Button1, Button2, Label1, Label2, Label3);
-
     Form1->Label1->Caption = "Runda za: 2";
     Application->ProcessMessages(); Sleep(1000);
     Form1->Label1->Caption = "Runda za: 1";
