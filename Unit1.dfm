@@ -803,7 +803,7 @@ object Form1: TForm1
     Transparent = True
   end
   object B: TImage
-    Left = 519
+    Left = 511
     Top = 256
     Width = 32
     Height = 32
@@ -948,13 +948,13 @@ object Form1: TForm1
     Visible = False
   end
   object Label3: TLabel
-    Left = 353
-    Top = 176
-    Width = 350
+    Left = 384
+    Top = 184
+    Width = 289
     Height = 65
     Alignment = taCenter
     AutoSize = False
-    Caption = 'Ilo\210 odbi'#263': 0'
+    Caption = 'Odbicia: 0'
     Color = clBtnFace
     Font.Charset = ANSI_CHARSET
     Font.Color = clNone

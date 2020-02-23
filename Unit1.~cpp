@@ -195,7 +195,7 @@ void __fastcall TForm1::BallTimerTimer(TObject *Sender)
     }
 
     Label2->Caption = IntToStr(playerPoints2) + " : " + IntToStr(playerPoints1);
-    Label3->Caption = "Ilo\211\255\199\213 odbi\143: " + IntToStr(numberOfBounces);
+    Label3->Caption = "Odbicia: " + IntToStr(numberOfBounces);
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button1Click(TObject *Sender)
